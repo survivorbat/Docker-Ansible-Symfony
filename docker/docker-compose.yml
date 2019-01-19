@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  app: ~
+  sessions: ~
+
+volumes:
+  app: ~
+
+services:
+  php:
+    build:
+      context: php
+    volumes:
+      - ./src:/srv/html
+    working_dir: /srv/html
+    networks:
+      - app
+      - sessions
+    restart: always
+    expose:
+      - 9000
+  webserver:
+    build:
+      context: webserver
+    volumes:
+      - ./src:/srv/html
+    working_dir: /srv/html
+    restart: always
+    ports:
+      - "80:8080"
+      - "433:8081"
+    networks:
+      - app
+  sessions:
+    image: redis:5.0.3
+    networks:
+      - sessions
+    restart: always

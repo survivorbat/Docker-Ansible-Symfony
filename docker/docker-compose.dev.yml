@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  php:
+    volumes:
+      - /development/SymfonyWithRedis/src:/srv/html
+  webserver:
+    volumes:
+      - /development/SymfonyWithRedis/src:/srv/html
+      - /development/SymfonyWithRedis/docker/webserver/sites-enabled:/etc/nginx/sites-enabled
