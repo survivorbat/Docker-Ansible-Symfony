@@ -4,3 +4,4 @@
 ansible/testing
 ansible/development
 ansible/production
+/src/bin/symfony_requirements
