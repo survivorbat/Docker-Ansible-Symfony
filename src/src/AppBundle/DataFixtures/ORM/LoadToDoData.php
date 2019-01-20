@@ -3,12 +3,13 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\ToDoItem;
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
-class LoadToDoData extends AbstractFixture implements OrderedFixtureInterface
+class LoadToDoData extends AbstractFixture implements OrderedFixtureInterface, ORMFixtureInterface
 {
     const AMOUNT = 10;
 
@@ -34,7 +35,7 @@ class LoadToDoData extends AbstractFixture implements OrderedFixtureInterface
             $toDoItem = new ToDoItem();
             $toDoItem
                 ->setStatus($this->faker->randomElement(ToDoItem::getPossibleStatuses()))
-                ->setTitle($this->faker->title)
+                ->setTitle($this->faker->sentence)
                 ->setDescription($this->faker->paragraph)
                 ->setRelatedToDoItems(
                     $this->faker->randomElements($relatedToDoItems, random_int(0, count($relatedToDoItems)))

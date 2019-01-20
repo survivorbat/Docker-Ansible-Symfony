@@ -1,0 +1,5 @@
+project_dir: /srv/todoapp
+default_user: runuser
+default_group: rungroup
+
+git_repo: https://github.com/survivorbat/Simple-Symfony-App.git

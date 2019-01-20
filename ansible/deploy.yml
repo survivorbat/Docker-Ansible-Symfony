@@ -1,0 +1,32 @@
+---
+- hosts: all
+  tasks:
+    # TODO: Add mysql dump backup step
+    - name: Update code in project directory
+      git:
+        repo: "{{ git_repo }}"
+        dest: "{{ project_dir }}"
+        owner: "{{ default_user }}"
+        group: "{{ default_group }}"
+
+    - name: Restart containers
+      docker_service:
+        state: present
+        restarted: yes
+        project_src:
+          - "{{ project_dir }}/docker/docker-compose.yml"
+
+    - name: Clear cache in php container
+      command: "docker exec docker_php_1 bin/console cache:clear --env=prod --no-debug"
+
+    - name: Clearing doctrine cache for metadata
+      command: "docker exec docker_php_1 bin/console --no-interaction doctrine:cache:clear-metadata"
+
+    - name: Clearing doctrine cache for queries
+      command: "docker exec docker_php_1 bin/console --no-interaction doctrine:cache:clear-query"
+
+    - name: Apply migrations in php container
+      command: "docker exec docker_php_1 bin/console doctrine:migrations:migrate -n"
+
+    - name: Warmup cache in php container
+      command: "docker exec docker_php_1 bin/console cache:warmup --env=prod -no-debug"

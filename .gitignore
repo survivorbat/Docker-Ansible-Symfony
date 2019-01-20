@@ -1,1 +1,6 @@
 .idea/
+.php_cs.cache
+*.retry
+ansible/testing
+ansible/development
+ansible/production

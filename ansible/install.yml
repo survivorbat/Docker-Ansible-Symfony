@@ -1,19 +1,24 @@
 ---
 - hosts: all
-  vars:
-    project_dir: /srv/todoapp
   tasks:
-    - name: Ensure Docker and Docker-Compose are installed
+    - name: Ensure Docker, python pip and Docker-Compose are installed
       apt:
-        update: true
+        update_cache: true
         name:
           - docker=1.5-1build1
           - docker-compose=1.17.1-2
-          - python-pip
+          - python-pip=9.0.1-2.3~ubuntu1
+    - name: Ensure python packages are installed
+      pip:
+        name:
+          - docker=3.7.0
+          - docker-compose=1.23.2
+          - docker-pycreds=0.4.0
+          - dockerpty=0.4.1
     - name: Ensure runuser exists
       user:
-        group: rungroup
-        name: runuser
+        group: "{{ default_group }}"
+        name: "{{ default_user }}"
         system: true
         uid: 9000
         comment: User to run the system with
@@ -22,13 +27,7 @@
       file:
         state: directory
         path: "{{ project_dir }}"
-        user: runuser
-        group: rungroup
+        user: "{{ default_user }}"
+        group: "{{ default_group }}"
         recurse: true
 
-    - name: Update code in project directory
-      git:
-        repo: https://github.com/survivorbat/Simple-Symfony-App.git
-        dest: "{{ project_dir }}"
-        owner: runuser
-        group: rungroup
