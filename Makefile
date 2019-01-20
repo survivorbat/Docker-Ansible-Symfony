@@ -2,6 +2,8 @@ dev.up:
 	docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up -d
 dev.down:
 	docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml down
+dev.hooks:
+	git config core.hooksPath .githooks
 dev.build:
 	docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml build
 dev.restart:

@@ -1,0 +1,43 @@
+{% extends "@App/base.html.twig" %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for todo in toDoItems %}
+                            <tr>
+                                <td>{{ todo.title }}</td>
+                                <td>{{ todo.status }}</td>
+                                <td>{{ todo.description }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">
+                                    No to-do items to display!
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ path('app_todo_create') }}">
+                <button class="btn btn-primary">
+                    Add a ToDo item
+                </button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

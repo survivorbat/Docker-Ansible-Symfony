@@ -1,0 +1,16 @@
+AppBundle\Entity\ToDoItem:
+  properties:
+    title:
+      - NotBlank: ~
+      - Length:
+          min: 5
+          max: 255
+    description:
+      - NotBlank: ~
+      - Length:
+          min: 10
+          max: 255
+    status:
+      - NotBlank: ~
+      - Choice:
+          callback: [AppBundle\Entity\ToDoItem, getPossibleStatuses]

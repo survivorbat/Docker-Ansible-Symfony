@@ -30,6 +30,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes: ['bootstrap_4_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -75,9 +76,9 @@ snc_redis:
             client: cache
             entity_manager: default
             document_manager: default
-        result_cache:
-            client: cache
-            entity_manager: [default, read]
+#        result_cache:
+#            client: cache
+#            entity_manager: [default, read]
         query_cache:
             client: cache
             entity_manager: default

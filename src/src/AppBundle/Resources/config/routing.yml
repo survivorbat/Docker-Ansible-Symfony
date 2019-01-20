@@ -1,0 +1,5 @@
+home:
+  resource: routing/home.yml
+
+todo:
+  resource: routing/todo.yml

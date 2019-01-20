@@ -1,0 +1,7 @@
+app_todo_index:
+  path: /todo
+  defaults: { _controller: "AppBundle:ToDo:index" }
+
+app_todo_create:
+  path: /todo/create
+  defaults: { _controller: "AppBundle:ToDo:create" }

@@ -1,0 +1,23 @@
+{% extends "@App/base.html.twig" %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello there!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Welcome to my ToDo list! In this application you can keep track of what you still need to do for the rest of the day!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                <a href="{{ path('app_todo_index') }}">Head to the todo list</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -3,9 +3,12 @@ version: '3'
 networks:
   app: ~
   sessions: ~
+  data: ~
 
 volumes:
   app: ~
+  database: ~
+  logs: ~
 
 services:
   php:
@@ -17,9 +20,15 @@ services:
     networks:
       - app
       - sessions
+      - data
     restart: always
     expose:
       - 9000
+    environment:
+      - DATABASE_USER=todo
+      - DATABASE_HOST=database
+      - DATABASE_PASSWORD=todotodo
+      - DATABASE_DATABASE=todos
   webserver:
     build:
       context: webserver
@@ -36,4 +45,18 @@ services:
     image: redis:5.0.3
     networks:
       - sessions
+    restart: always
+    volumes:
+      - logs:/var/log/redis
+  database:
+    image: mysql:5.7
+    networks:
+      - data
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=todos
+      - MYSQL_USER=todo
+      - MYSQL_PASSWORD=todotodo
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
     restart: always

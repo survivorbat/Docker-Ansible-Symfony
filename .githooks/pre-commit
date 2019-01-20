@@ -1,0 +1,5 @@
+#!/bin/sh
+# Get all changed files and 'fix' them before committing
+
+echo Running pre-commit hooks..
+git diff --name-only --cached --diff-filter=ACMRTUXB | while read filename; do ./src/php-cs-fixer fix $filename && git add $filename; done;

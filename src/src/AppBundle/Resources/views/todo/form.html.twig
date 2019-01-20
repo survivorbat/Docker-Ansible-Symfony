@@ -1,0 +1,22 @@
+{% extends "@App/base.html.twig" %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-12">
+            <h1>Add a new ToDo item</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+                {{ form_row(form._token) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.status) }}
+                {{ form_row(form.relatedToDoItems) }}
+                {{ form_errors(form) }}
+                <button type="submit" class="btn btn-primary">Add item</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
