@@ -1,7 +1,7 @@
 .idea/
 .php_cs.cache
 *.retry
-ansible/testing
-ansible/development
-ansible/production
+/ansible/testing
+/ansible/development
+/ansible/production
 /src/bin/symfony_requirements
