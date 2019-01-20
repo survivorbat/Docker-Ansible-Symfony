@@ -15,7 +15,7 @@ services:
     build:
       context: php
     volumes:
-      - ${PWD}/../src:/srv/html
+      - ${PWD}/src:/srv/html
     working_dir: /srv/html
     networks:
       - app
@@ -33,7 +33,7 @@ services:
     build:
       context: webserver
     volumes:
-      - ${PWD}/../src:/srv/html
+      - ${PWD}/src:/srv/html
     working_dir: /srv/html
     restart: always
     ports:
