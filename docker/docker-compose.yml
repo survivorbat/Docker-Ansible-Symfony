@@ -34,7 +34,7 @@ services:
       context: webserver
     volumes:
       - ../src:/srv/html
-      - ./webserver/sites-enabled:/etc/nginx/sites-enabled
+      - ./webserver/sites-enabled/symfonywithredis.com:/etc/nginx/sites-enabled/symfonywithredis.com
     working_dir: /srv/html
     restart: always
     ports:
