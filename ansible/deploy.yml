@@ -16,19 +16,25 @@
           - "docker/docker-compose.yml"
 
     - name: Run composer install
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 composer install -o"
 
     - name: Clear cache in php container
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 bin/console cache:clear --env=prod --no-debug"
 
     - name: Clearing doctrine cache for metadata
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 bin/console --no-interaction doctrine:cache:clear-metadata"
 
     - name: Clearing doctrine cache for queries
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 bin/console --no-interaction doctrine:cache:clear-query"
 
     - name: Apply migrations in php container
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 bin/console doctrine:migrations:migrate -n"
 
     - name: Warmup cache in php container
+      become_user: "{{ default_user }}"
       command: "docker exec docker_php_1 bin/console cache:warmup --env=prod -no-debug"
