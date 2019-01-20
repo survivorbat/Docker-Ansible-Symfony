@@ -1,13 +1,21 @@
 ---
 - hosts: all
+  gather_facts: no
+  become: yes
+  remote_user: root
+  tasks:
+    - name: Make sure python 2 is installed
+      raw: sudo apt-get -y install python
+
+- hosts: all
   tasks:
     - name: Ensure Docker, python pip and Docker-Compose are installed
       apt:
         update_cache: true
         name:
-          - docker=1.5-1build1
-          - docker-compose=1.17.1-2
-          - python-pip=9.0.1-2.3~ubuntu1
+          - docker
+          - docker-compose
+          - python-pip
 
     - name: Ensure python packages are installed
       pip:

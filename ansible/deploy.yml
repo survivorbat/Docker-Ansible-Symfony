@@ -3,6 +3,8 @@
   tasks:
     # TODO: Add mysql dump backup step
     - name: Update code in project directory
+      become_user: "{{ default_user }}"
+      become: yes
       git:
         repo: "{{ git_repo }}"
         dest: "{{ project_dir }}"
