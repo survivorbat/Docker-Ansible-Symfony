@@ -37,4 +37,4 @@
 
     - name: Warmup cache in php container
       become_user: "{{ default_user }}"
-      command: "docker exec docker_php_1 bin/console cache:warmup --env=prod -no-debug"
+      command: "docker exec docker_php_1 bin/console cache:warmup --env=prod --no-debug"
