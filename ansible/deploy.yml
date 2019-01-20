@@ -15,6 +15,9 @@
         files:
           - "docker/docker-compose.yml"
 
+    - name: Run composer install
+      command: "docker exec docker_php_1 composer install -o"
+
     - name: Clear cache in php container
       command: "docker exec docker_php_1 bin/console cache:clear --env=prod --no-debug"
 
