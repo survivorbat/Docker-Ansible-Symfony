@@ -20,7 +20,7 @@ fill the database with dummy data.
 
 Deploying is easy since we're using Ansible, however this script is only safely usable on Ubuntu. 
 You can copy the ansible/testing.dest file to ansible/testing and fill it with the IP addresses you need.
-Use the command `ansible-playbook -i ansible/testing ansible/site.yml` and the application will be
+Use the command `ansible-playbook -u root -i ansible/testing ansible/site.yml` and the application will be
 deployed to the selected servers.
 
 ## Acknowledgements
