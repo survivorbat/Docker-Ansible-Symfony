@@ -6,15 +6,14 @@
       git:
         repo: "{{ git_repo }}"
         dest: "{{ project_dir }}"
-        owner: "{{ default_user }}"
-        group: "{{ default_group }}"
 
-    - name: Restart containers
+    - name: Ensure containers are running and restarted
       docker_service:
         state: present
+        project_src: "{{ project_dir }}"
         restarted: yes
-        project_src:
-          - "{{ project_dir }}/docker/docker-compose.yml"
+        files:
+          - "docker/docker-compose.yml"
 
     - name: Clear cache in php container
       command: "docker exec docker_php_1 bin/console cache:clear --env=prod --no-debug"
