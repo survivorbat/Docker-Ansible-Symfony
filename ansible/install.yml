@@ -29,6 +29,7 @@
         name: "{{ default_group }}"
         state: present
         system: yes
+        gid: 900
 
     - name: Ensure runuser exists
       user:
